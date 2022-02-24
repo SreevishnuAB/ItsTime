@@ -2,6 +2,7 @@ const playBtn = document.getElementById("btn-play");
 const stopBtn = document.getElementById("btn-stop");
 const resetBtn = document.getElementById("btn-reset");
 const counter = document.getElementById("counter")
+const alarmAudio = document.getElementById("alarm");
 
 const initialCls = counter.className;
 let interval;
@@ -13,6 +14,7 @@ playBtn.addEventListener("click", ()=>{
   counter.readOnly = true;
   console.log("ReadOnly value set:", counter.readOnly);
   resetBtn.disabled = true;
+  alarmAudio.load();
   redoTime = time = parseInt(counter.value);
   interval = setInterval(()=>{
     if(time > 0){
@@ -23,6 +25,7 @@ playBtn.addEventListener("click", ()=>{
     }
     else{
       clearInterval(interval);
+      alarmAudio.play();
       counter.readOnly = false;
       counter.className = initialCls;
       resetBtn.disabled = false;
@@ -37,6 +40,7 @@ stopBtn.addEventListener("click", ()=>{
     resetBtn.disabled = false;
   counter.className = initialCls
   counter.value = 0;
+  alarmAudio.pause();
 });
 
 resetBtn.addEventListener("click", ()=>{
