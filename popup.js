@@ -13,6 +13,7 @@ playBtn.addEventListener("click", ()=>{
   console.log("Counter set:", counter.value);
   counter.readOnly = true;
   console.log("ReadOnly value set:", counter.readOnly);
+  playBtn.disabled = true;
   resetBtn.disabled = true;
   alarmAudio.load();
   redoTime = time = parseInt(counter.value);
@@ -26,6 +27,7 @@ playBtn.addEventListener("click", ()=>{
     else{
       clearInterval(interval);
       alarmAudio.play();
+      playBtn.disabled = false;
       counter.readOnly = false;
       counter.className = initialCls;
       resetBtn.disabled = false;
